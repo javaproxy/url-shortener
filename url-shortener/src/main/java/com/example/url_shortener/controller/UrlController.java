@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ public class UrlController {
 	public String shorten(@RequestParam String url) {
 		String code = UUID.randomUUID().toString().substring(0, 6);
 		store.put(code, url);
-		return "http://localhost:8080/" + code;
+		return "http://3.26.28.160:8080/" + code;
 	}
 
 	@GetMapping("/{code}")
@@ -30,5 +31,10 @@ public class UrlController {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.status(302).location(URI.create(target)).build();
+	}
+
+	@GetMapping("/saiLove")
+	public ResponseEntity<String> redirect() {
+		return new ResponseEntity<String>("I love you Mayuri .. ", HttpStatus.OK);
 	}
 }
