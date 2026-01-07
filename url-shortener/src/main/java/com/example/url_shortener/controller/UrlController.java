@@ -13,9 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.PostConstruct;
+
 @RestController
 public class UrlController {
 	private final Map<String, String> store = new HashMap<>();
+
+	@PostConstruct
+	public void init() {
+		store.put("google", "https://www.google.com");
+		store.put("youtube", "https://www.youtube.com");
+		store.put("song1", "https://open.spotify.com/artist/4YRxDV8wJFPHPTeXepOstw");
+	}
 
 	@PostMapping("/shorten")
 	public String shorten(@RequestParam String url) {
