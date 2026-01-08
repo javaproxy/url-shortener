@@ -30,7 +30,7 @@ public class UrlController {
 	public String shorten(@RequestParam String url) {
 		String code = UUID.randomUUID().toString().substring(0, 6);
 		store.put(code, url);
-		return "http:3.111.33.244/" +code;
+		return "http://65.2.73.56/" +code;
 		//return "http://3.26.28.160:8080/" + code;
 		//return "http://localhost:8080/" + code;
 	}
